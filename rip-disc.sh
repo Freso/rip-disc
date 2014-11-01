@@ -14,6 +14,9 @@ echo '... Ripping the CD.'
 rip cd rip --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
            --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE"
 
+echo '... Calculating AcoustIDs.'
+acoustid-fingerprinter
+
 echo '... Calculating ReplayGain.'
 metaflac --add-replay-gain $TMPDIR/*/*.flac
 
