@@ -5,6 +5,32 @@ DESTDIR=`pwd`
 TAGGER=`which picard`
 RELEASE_ID=''
 
+while getopts 't:d:r:' OPT; do
+  case $OPT in
+    t)
+      echo "Setting TMPDIR to $OPTARG."
+      TMPDIR=$OPTARG
+      ;;
+    d)
+      echo "Setting DESTDIR to $OPTARG."
+      DESTDIR=$OPTARG
+      ;;
+    r)
+      echo "Setting RELEASE_ID to $OPTARG."
+      echo "... See release on MusicBrainz: https://musicbrainz.org/release/$OPTARG"
+      RELEASE_ID=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
 TRACK_TEMPLATE='%A - %d (%y) [%X]/%t. %a - %n'
 DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 
