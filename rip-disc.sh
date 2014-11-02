@@ -28,8 +28,8 @@ genpuid `tail -n1 /usr/share/genpuid/keys.txt` -r -threads=2 "$TMPDIR/$discdir"
 echo '... Calculating ReplayGain.'
 metaflac --preserve-modtime --add-replay-gain $TMPDIR/*/*.flac
 
-# echo '... Additionally tag files.'
-$TAGGER $TMPDIR/*
+echo '... Additionally tag files.'
+$TAGGER "$TMPDIR/$discdir"
 
 # echo '... Generating torrent file.'
 # mktor ...
