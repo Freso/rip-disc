@@ -8,9 +8,15 @@ RELEASE_ID=''
 TRACK_TEMPLATE='%A - %d (%y) [%X]/%t. %a - %n'
 DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 
-echo "Ripping to $TMPDIR."
+_ripcmd="rip cd rip \
+--logger whatcd --working-directory='$TMPDIR' --output-directory='' \
+--track-template='$TRACK_TEMPLATE' --disc-template='$DISC_TEMPLATE' \
+--release-id='$RELEASE_ID'"
 
+echo "Ripping to: $TMPDIR"
 echo '... Ripping the CD.'
+echo "    Using: $_ripcmd"
+
 rip cd rip \
 --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
 --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE" \
