@@ -19,9 +19,6 @@ rip cd rip \
 discdir=`ls $TMPDIR/`
 echo "... Working with $discdir."
 
-echo '... Calculating AcoustIDs.'
-acoustid-fingerprinter
-
 echo '... Calculating ReplayGain.'
 metaflac --preserve-modtime --add-replay-gain $TMPDIR/*/*.flac
 
