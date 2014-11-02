@@ -42,7 +42,3 @@ echo '... Compress into archive.'
 
 echo '... Moving archive.'
 rsync -avz --remove-sent-files --progress "$TMPDIR/$discdir.7z" "$DESTDIR" && rm -rf "$TMPDIR/$discdir"
-
-echo '... Cleaning up.'
-cd $HOME
-rmdir $TMPDIR
