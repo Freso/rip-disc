@@ -1,6 +1,6 @@
 #!/bin/dash
 
-TMPDIR=`mktemp -d`
+TMPDIR=`mktemp -d '/tmp/rip-disc.XXX'`
 DESTDIR=`pwd`
 TAGGER=`which picard`
 
