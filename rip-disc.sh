@@ -3,6 +3,7 @@
 TMPDIR=`mktemp -d '/tmp/rip-disc.XXX'`
 DESTDIR=`pwd`
 TAGGER=`which picard`
+RELEASE_ID=''
 
 TRACK_TEMPLATE='%A - %d (%y) [%X]/%t. %a - %n'
 DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
@@ -10,8 +11,10 @@ DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 echo "Ripping to $TMPDIR."
 
 echo '... Ripping the CD.'
-rip cd rip --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
-           --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE"
+rip cd rip \
+--logger whatcd --working-directory="$TMPDIR" --output-directory='' \
+--track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE" \
+--release-id="$RELEASE_ID"
 
 discdir=`ls $TMPDIR/`
 echo "... Working with $discdir."
