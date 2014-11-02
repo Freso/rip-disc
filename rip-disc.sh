@@ -30,4 +30,5 @@ echo "... Moving files to $DESTDIR."
 mv -v $TMPDIR/* "$DESTDIR"
 
 echo '... Cleaning up.'
+cd $HOME
 rmdir $TMPDIR
