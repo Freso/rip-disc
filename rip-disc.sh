@@ -18,7 +18,7 @@ echo '... Calculating AcoustIDs.'
 acoustid-fingerprinter
 
 echo '... Calculating ReplayGain.'
-metaflac --add-replay-gain $TMPDIR/*/*.flac
+metaflac --preserve-modtime --add-replay-gain $TMPDIR/*/*.flac
 
 # echo '... Additionally tag files.'
 $TAGGER $TMPDIR/*
