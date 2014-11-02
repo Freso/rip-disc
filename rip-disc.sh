@@ -31,6 +31,9 @@ metaflac --preserve-modtime --add-replay-gain $TMPDIR/*/*.flac
 echo '... Additionally tag files.'
 $TAGGER "$TMPDIR/$discdir"
 
+echo '... Submitting to AcousticBrainz.'
+find "$TMPDIR/$discdir" -name '*.flac' -print0 | parallel --null --eta abzsubmit
+
 # echo '... Generating torrent file.'
 # mktor ...
 
