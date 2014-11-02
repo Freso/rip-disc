@@ -9,10 +9,12 @@ DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 
 echo "Ripping to $TMPDIR."
 
-
 echo '... Ripping the CD.'
 rip cd rip --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
            --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE"
+
+discdir=`ls $TMPDIR/`
+echo "... Working with $discdir."
 
 echo '... Calculating AcoustIDs.'
 acoustid-fingerprinter
@@ -26,8 +28,11 @@ $TAGGER $TMPDIR/*
 # echo '... Generating torrent file.'
 # mktor ...
 
-echo "... Moving files to $DESTDIR."
-mv -v $TMPDIR/* "$DESTDIR"
+echo '... Compress into archive.'
+7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "$TMPDIR/$discdir.7z" "$TMPDIR/$discdir"
+
+echo '... Moving archive.'
+rsync -avz --remove-sent-files --progress "$TMPDIR/$discdir.7z" "$DESTDIR" && rm -rf "$TMPDIR/$discdir"
 
 echo '... Cleaning up.'
 cd $HOME
