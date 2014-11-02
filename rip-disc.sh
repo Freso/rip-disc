@@ -14,7 +14,7 @@ echo '... Ripping the CD.'
 rip cd rip \
 --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
 --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE" \
---release-id="$RELEASE_ID"
+--release-id="$RELEASE_ID" || exit 1
 
 discdir=`ls $TMPDIR/`
 echo "... Working with $discdir."
