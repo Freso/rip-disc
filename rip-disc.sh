@@ -5,7 +5,7 @@ DESTDIR=`pwd`
 TAGGER=`which picard`
 RELEASE_ID=''
 
-while getopts 't:d:r:' OPT; do
+while getopts 't:d:r:c:' OPT; do
   case $OPT in
     t)
       echo "Setting TMPDIR to $OPTARG."
@@ -19,6 +19,10 @@ while getopts 't:d:r:' OPT; do
       echo "Setting RELEASE_ID to $OPTARG."
       echo "... See release on MusicBrainz: https://musicbrainz.org/release/$OPTARG"
       RELEASE_ID=$OPTARG
+      ;;
+    c)
+      echo "Using disk drive $OPTARG."
+      DRIVE=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -34,7 +38,7 @@ done
 TRACK_TEMPLATE='%A - %d (%y) [%X]/%t. %a - %n'
 DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 
-_ripcmd="rip cd rip \
+_ripcmd="rip cd --device='$DRIVE' rip \
 --logger whatcd --working-directory='$TMPDIR' --output-directory='' \
 --track-template='$TRACK_TEMPLATE' --disc-template='$DISC_TEMPLATE' \
 --release-id='$RELEASE_ID'"
@@ -43,7 +47,7 @@ echo "Ripping to: $TMPDIR"
 echo '... Ripping the CD.'
 echo "    Using: $_ripcmd"
 
-rip cd rip \
+rip cd --device="$DRIVE" rip \
 --logger whatcd --working-directory="$TMPDIR" --output-directory='' \
 --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE" \
 --release-id="$RELEASE_ID" || exit 1
