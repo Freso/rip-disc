@@ -65,6 +65,11 @@ _ripcmd="rip cd --device='$DRIVE' rip \
 --release-id='$RELEASE_ID'"
 
 echo "Ripping to: $TMPDIR"
+
+echo '... Extracting TOC.'
+TOCFILE=$(mktemp --dry-run --suffix .toc)
+cdrdao read-toc --device "$DRIVE" "$TOCFILE"
+
 echo '... Ripping the CD.'
 echo "    Using: $_ripcmd"
 
@@ -89,6 +94,7 @@ find "$TMPDIR/$discdir" -name '*.flac' -print0 | parallel --null --eta abzsubmit
 # mktor ...
 
 echo '... Compress into archive.'
+mv "$TOCFILE" "$TMPDIR/$discdir/CD.toc"
 7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on -mmt=on "$TMPDIR/$discdir.7z" "$TMPDIR/$discdir"
 
 echo '... Moving archive.'
