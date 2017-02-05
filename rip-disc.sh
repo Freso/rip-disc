@@ -66,6 +66,8 @@ _ripcmd="rip cd --device='$DRIVE' rip \
 
 echo "Ripping to: $TMPDIR"
 
+eject --trayclose "$DRIVE"
+
 echo '... Extracting TOC.'
 TOCFILE=$(mktemp --dry-run --suffix .toc)
 cdrdao read-toc --device "$DRIVE" "$TOCFILE"
