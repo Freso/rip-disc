@@ -83,8 +83,8 @@ rip cd --device="$DRIVE" rip \
 discdir=`ls $TMPDIR/`
 echo "... Working with $discdir."
 
-echo '... Calculating ReplayGain.'
-metaflac --preserve-modtime --add-replay-gain $TMPDIR/*/*.flac
+echo '... Recompressing and calculating ReplayGain.'
+flac --preserve-modtime --add-replay-gain --best --verify --force $TMPDIR/*/*.flac
 
 echo '... Additionally tag files.'
 $TAGGER "$TMPDIR/$discdir"
