@@ -24,6 +24,7 @@ TMPDIR=`mktemp -d '/tmp/rip-disc.XXX'`
 DESTDIR=`pwd`
 TAGGER=`which picard`
 RELEASE_ID=''
+DRIVE='/dev/cdrom'
 
 while getopts 't:d:r:c:' OPT; do
   case $OPT in
