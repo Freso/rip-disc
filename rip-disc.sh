@@ -59,7 +59,7 @@ done
 TRACK_TEMPLATE='%A - %d (%y) [%X]/%t. %a - %n'
 DISC_TEMPLATE='%A - %d (%y) [%X]/%A - %d'
 
-_ripcmd="whipper cd --device='$DRIVE' rip \
+_ripcmd="whipper cd --device='$DRIVE' rip --cdr \
 --working-directory='$TMPDIR' --output-directory='' \
 --track-template='$TRACK_TEMPLATE' --disc-template='$DISC_TEMPLATE' \
 --release-id='$RELEASE_ID'"
@@ -75,7 +75,7 @@ cdrdao read-toc --device "$DRIVE" "$TOCFILE"
 echo '... Ripping the CD.'
 echo "    Using: $_ripcmd"
 
-whipper cd --device="$DRIVE" rip \
+whipper cd --device="$DRIVE" rip --cdr \
 --working-directory="$TMPDIR" --output-directory='' \
 --track-template="$TRACK_TEMPLATE" --disc-template="$DISC_TEMPLATE" \
 --release-id="$RELEASE_ID" || exit 1
