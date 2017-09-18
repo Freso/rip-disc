@@ -31,5 +31,17 @@ class BasicTest(unittest.TestCase):
         from importlib import import_module
         import_module("rip-disc")
 
+
+class MainTest(unittest.TestCase):
+    """Test the rip-disc.main() function."""
+
+    def test_main(self):
+        """Test rip-disc's main() function."""
+        from importlib import import_module
+        ripdisc = import_module("rip-disc")
+
+        ripdisc.main()
+
+
 if __name__ == '__main__':
     unittest.main()
