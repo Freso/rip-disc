@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env python3
 
 # Copyright © 2013–2017 Frederik “Freso” S. Olesen <https://freso.dk/>
 #
